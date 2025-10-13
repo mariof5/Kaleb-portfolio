@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { portfolioItems } from '../data/portfolioItems'
+import { portfolioItems } from '../data/portfolioitems';
 
 // Clean custom hook for portfolio logic
 export const usePortfolio = () => {

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaYoutube, FaMobileAlt } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 import styles from './styles/Portfolio.module.css';
-import { portfolioItems, filters } from './data/portfolioItems';
+import { portfolioItems, filters } from './data/portfolioitems';
 import { usePortfolio } from './hooks/usePortfolio';
 import { PortfolioItem } from './PortfolioItem';
 import { VideoModal } from './VideoModal';

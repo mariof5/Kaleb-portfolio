@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPlay, FaExternalLinkAlt, FaYoutube, FaHeart, FaEye, FaClock, FaMobile } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 import styles from './styles/Portfolio.module.css';
-import { getYouTubeThumbnail } from './data/portfolioItems';
+import { getYouTubeThumbnail } from './data/portfolioitems';
 
 // Smart image component with fallback handling
 const SmartImage = ({ sources = [], alt = '', className = '', onFinalError }) => {
