@@ -1,0 +1,582 @@
+/* CSS Variables for maintainability */
+:root {
+  --brand-gradient: linear-gradient(135deg, #944AF2 0%, #FF6B6B 100%);
+  --bg-primary: rgba(13, 13, 15, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --border-primary: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(148, 74, 242, 0.4);
+  --accent-primary: #944AF2;
+  --accent-secondary: #FF6B6B;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --shadow-primary: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skills {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* Background Visuals */
+.backgroundVisuals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradientOrb {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(148, 74, 242, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: float 6s ease-in-out infinite;
+}
+
+.gradientOrb2 {
+  position: absolute;
+  bottom: 30%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(25px);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.headerVisual {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.visualDot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.visualLine {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Software Proficiency */
+.softwareSection {
+  margin-bottom: 6rem;
+}
+
+.softwareHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.softwareTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.softwareVisual {
+  position: relative;
+}
+
+.visualPulse {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-secondary);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.softwareGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.softwareItem {
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
+  transform-origin: center;
+}
+
+.softwareItem:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-primary);
+}
+
+.softwareImageContainer {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.softwareImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.softwareLevelBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-primary);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.softwareItem:hover .softwareLevelBadge {
+  background: rgba(148, 74, 242, 0.9);
+  transform: scale(1.1);
+}
+
+.softwareContent {
+  padding: 1.5rem;
+}
+
+.softwareInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.softwareName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.softwareItem:hover .softwareName {
+  color: var(--accent-primary);
+}
+
+.softwareCategory {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.softwareBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.softwareProgress {
+  height: 100%;
+  background: var(--brand-gradient);
+  border-radius: 4px;
+  transform-origin: left;
+  position: relative;
+}
+
+.softwareProgress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.softwareItem:hover .softwareProgress::after {
+  opacity: 1;
+}
+
+/* Core Skills */
+.skillsSection {
+  margin-bottom: 5rem;
+}
+
+.skillsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.skillsTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.skillCategory {
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
+  transform-origin: center;
+}
+
+.skillCategory:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-primary);
+}
+
+.categoryVisual {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.categoryImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(148, 74, 242, 0.2), rgba(255, 107, 107, 0.1));
+  transition: opacity 0.3s ease;
+}
+
+.skillCategory:hover .imageOverlay {
+  opacity: 0.8;
+}
+
+.categoryTitle {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.skillsList {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skillName {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skillLevel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  transition: color 0.3s ease;
+}
+
+.skillCategory:hover .skillLevel {
+  color: var(--accent-secondary);
+}
+
+.skillBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skillProgress {
+  height: 100%;
+  background: var(--brand-gradient);
+  border-radius: 10px;
+  transform-origin: left;
+  position: relative;
+}
+
+.skillProgress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skillCategory:hover .skillProgress::after {
+  opacity: 1;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-primary);
+  position: relative;
+}
+
+.ctaVisual {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ctaOrb {
+  width: 20px;
+  height: 20px;
+  background: var(--brand-gradient);
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.7;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.ctaText {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.ctaLink {
+  background: none;
+  border: none;
+  color: var(--accent-primary);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ctaLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brand-gradient);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.ctaLink:hover {
+  color: var(--accent-secondary);
+}
+
+.ctaLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .softwareGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    padding: 80px 0;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .softwareGrid,
+  .skillsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .softwareImageContainer {
+    height: 120px;
+  }
+  
+  .categoryVisual {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .softwareTitle,
+  .skillsTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* Performance Optimizations */
+.skills {
+  will-change: transform, opacity;
+}
+
+.skillCategory, .softwareItem {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .skills, .skillCategory, .softwareItem {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .gradientOrb, .gradientOrb2, .visualDot, .visualPulse, .ctaOrb {
+    animation: none;
+  }
+}

@@ -1,0 +1,632 @@
+/* CSS Variables */
+:root {
+  --brand-gradient: linear-gradient(135deg, #944AF2 0%, #FF6B6B 100%);
+  --bg-primary: rgba(13, 13, 15, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --border-primary: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(148, 74, 242, 0.4);
+  --accent-primary: #944AF2;
+  --accent-secondary: #FF6B6B;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --shadow-primary: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.services {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+/* Background Visuals */
+.backgroundVisuals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradientOrb {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(148, 74, 242, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.gradientOrb2 {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: float 12s ease-in-out infinite reverse;
+}
+
+/* Animated Particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  opacity: var(--opacity);
+  animation: floatParticle var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.particle:nth-child(odd) {
+  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) translateX(20px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-30px) translateX(-10px) rotate(270deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 6rem;
+  position: relative;
+}
+
+.headerVisual {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.visualDot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.visualLine {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brand-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.header:hover .highlight::after {
+  transform: scaleX(1);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Section Headers */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--brand-gradient);
+  border-radius: 2px;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Main Services Container */
+.mainServices {
+  margin-bottom: 3rem;
+}
+
+.servicesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mainServicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Additional Services Section */
+.additionalSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.additionalToggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.additionalToggle:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.additionalServices {
+  width: 100%;
+  overflow: hidden;
+}
+
+.additionalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Service Card Styles (Same for both main and additional) */
+.serviceCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  isolation: isolate;
+}
+
+/* Amazing Hover Effects */
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.floatingElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floatingElement {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.floatingElement:nth-child(1) { top: 20%; left: 10%; }
+.floatingElement:nth-child(2) { top: 60%; left: 80%; }
+.floatingElement:nth-child(3) { top: 80%; left: 30%; }
+
+.serviceCard:hover {
+  border-color: transparent;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 50px rgba(148, 74, 242, 0.3);
+  transform: translateY(-15px) scale(1.03);
+}
+
+.cardHeader {
+  position: relative;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.serviceImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.serviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.serviceCard:hover .serviceImage {
+  transform: scale(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.serviceCard:hover .imageOverlay {
+  opacity: 0.6;
+}
+
+.imageShine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.serviceTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  z-index: 2;
+}
+
+.titleUnderline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 1px;
+  z-index: 3;
+}
+
+.cardContent {
+  flex: 1;
+  padding: 2rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.serviceDescription {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  transition: transform 0.3s ease;
+}
+
+.featureDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.featureDot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: inherit;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.featureText {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  flex: 1;
+  transition: all 0.3s ease;
+}
+
+.featureItem:hover .featureText {
+  color: inherit;
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding: 0 2rem 2rem;
+  position: relative;
+}
+
+.serviceButton {
+  width: 100%;
+  background: var(--brand-gradient);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.serviceButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.serviceButton:hover::before {
+  left: 100%;
+}
+
+.buttonArrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.buttonRipple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  border-radius: 12px;
+  z-index: -1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .mainServicesGrid,
+  .additionalGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 80px 0;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .mainServicesGrid,
+  .additionalGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .additionalToggle {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .cardContent {
+    padding: 1.5rem;
+  }
+  
+  .cardFooter {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .additionalToggle {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Performance Optimizations */
+.services {
+  will-change: transform, opacity;
+}
+
+.serviceCard {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .services, .serviceCard {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .gradientOrb, .gradientOrb2, .visualDot, .featureDot::after, .particle {
+    animation: none;
+  }
+  
+  .buttonArrow {
+    transition: none;
+  }
+  
+  .imageShine, .buttonRipple, .cardGlow {
+    display: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.serviceButton:focus,
+.additionalToggle:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
