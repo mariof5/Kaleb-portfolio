@@ -316,50 +316,6 @@
   font-weight: 500;
 }
 
-/* Preview Section */
-.previewSection {
-  margin-bottom: 2rem;
-}
-
-.preview {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid var(--border-primary);
-}
-
-.previewImage {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-}
-
-.previewOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.preview:hover .previewOverlay {
-  opacity: 1;
-}
-
-.previewOverlay span {
-  color: white;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
 /* CTA Section */
 .ctaSection {
   display: flex;
@@ -470,53 +426,6 @@
   font-size: 0.9rem;
 }
 
-/* Preview Modal */
-.previewModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  padding: 2rem;
-}
-
-.modalContent {
-  position: relative;
-  max-width: 800px;
-  max-height: 80vh;
-  background: var(--bg-primary);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border-primary);
-}
-
-.closeButton {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.modalImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* Responsive Design */
 @media (max-width: 1024px) {
   .packagesGrid {
@@ -577,10 +486,6 @@
   
   .stickyContent {
     padding: 0 1rem;
-  }
-  
-  .previewModal {
-    padding: 1rem;
   }
 }
 

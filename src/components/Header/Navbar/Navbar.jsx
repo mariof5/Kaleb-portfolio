@@ -3,7 +3,7 @@ import { FaCrown, FaTimes, FaBars, FaChevronDown, FaStar, FaGem } from 'react-ic
 import { MdOndemandVideo } from "react-icons/md";
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
-import Kaleb_logo from '../../../../public/Logo/kaleb_logo_G.png';
+import Kaleb_logo from '../../../../public/Logo/kaleb_logo_P.webp';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +44,20 @@ const Navbar = () => {
       path: '#services', 
       hasDropdown: true,
       items: [
-        'Package', 
+         
+        { 
+          name: 'video editing', 
+          path: '#services', 
+          filter: null,
+          icon: <FaGem />
+        },
+        { 
+          name: 'Packages', 
+          path: '#packages', 
+          filter: null,
+          icon: <FaGem />
+        },
+       
       ]
     },
     { name: 'Blog', path: '#blog', hasDropdown: false },
@@ -114,6 +127,22 @@ const Navbar = () => {
     const section = document.querySelector(path);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Specific function for Packages navigation
+  const handlePackagesNavigation = (event) => {
+    event.preventDefault();
+    setIsOpen(false);
+    setActiveDropdown(null);
+    setMobileOpenDropdown(null);
+    
+    const packagesSection = document.getElementById('packages');
+    if (packagesSection) {
+      packagesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   };
 
@@ -310,10 +339,15 @@ const Navbar = () => {
                           key={dropdownItem.name || dropdownItem}
                           href={dropdownItem.path || dropdownItem}
                           className={styles.dropdownItem}
-                          onClick={(e) => dropdownItem.filter ? 
-                            handlePortfolioNavigation(dropdownItem.filter, e) : 
-                            handleNavigation(dropdownItem.path || dropdownItem, e)
-                          }
+                          onClick={(e) => {
+                            if (dropdownItem.path === '#packages') {
+                              handlePackagesNavigation(e);
+                            } else if (dropdownItem.filter) {
+                              handlePortfolioNavigation(dropdownItem.filter, e);
+                            } else {
+                              handleNavigation(dropdownItem.path || dropdownItem, e);
+                            }
+                          }}
                           whileHover={{ 
                             x: 10,
                             backgroundColor: "rgba(148, 74, 242, 0.1)"
@@ -428,9 +462,13 @@ const Navbar = () => {
                                 href={dropdownItem.path || dropdownItem}
                                 className={styles.mobileDropdownItem}
                                 onClick={(e) => {
-                                  dropdownItem.filter ? 
-                                    handlePortfolioNavigation(dropdownItem.filter, e) : 
+                                  if (dropdownItem.path === '#packages') {
+                                    handlePackagesNavigation(e);
+                                  } else if (dropdownItem.filter) {
+                                    handlePortfolioNavigation(dropdownItem.filter, e);
+                                  } else {
                                     handleNavigation(dropdownItem.path || dropdownItem, e);
+                                  }
                                 }}
                               >
                                 {dropdownItem.icon && (

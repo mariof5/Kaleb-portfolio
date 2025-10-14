@@ -1,16 +1,15 @@
 import React from 'react';
 import { FaDownload, FaPlay, FaUser, FaCalendar, FaRocket } from 'react-icons/fa';
-import { MdVerified, MdOutlineVerified } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
-import editorPhoto from '../../assets/img/kaleb-photo-rm.png';
-
+import editorPhoto from '../../assets/img/kaleb-photo-rm.webp';
 
 const About = () => {
   const stats = [
-    { number: '150+', label: 'Projects Done', icon: <FaRocket /> },
-    { number: '50+', label: 'Happy Clients', icon: <FaUser /> },
-    { number: '8+', label: 'Years Experience', icon: <FaCalendar /> }
+    { number: '50+', label: 'Projects Completed', icon: <FaRocket /> },
+    { number: '50+', label: 'Satisfied Clients', icon: <FaUser /> },
+    { number: '2+', label: 'Years Experience', icon: <FaCalendar /> }
   ];
 
   const containerVariants = {
@@ -64,25 +63,21 @@ const About = () => {
             {/* Header Section */}
             <motion.div className={styles.header} variants={itemVariants}>
               <div className={styles.badge}>
-             
-                <MdVerified  className={styles.badgeIcon} />
-            
-       
+                <MdVerified className={styles.badgeIcon} />
                 <span>PROFESSIONAL VIDEO EDITOR</span>
               </div>
               <h1 className={styles.title}>
-                Hi, I'm <span className={styles.highlight}>Kaleb</span>
+                Hi, I'm <span className={styles.highlight}>Kaleb Mitiku</span>
               </h1>
             </motion.div>
 
             {/* Description Section */}
             <motion.div className={styles.description} variants={itemVariants}>
               <p className={styles.lead}>
-                Crafting cinematic stories through the art of video editing.
+                Creative video editor, motion designer & cinematographer with 2+ years of professional experience
               </p>
               <p className={styles.sublead}>
-                Specializing in commercials, music videos, and premium content 
-                that captivates audiences.
+                I craft cinematic visuals and cool animations that capture attention and emotion. My goal? To make every project unforgettable and trigger real connection the moment you hit play.
               </p>
             </motion.div>
 
@@ -94,7 +89,7 @@ const About = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <FaPlay className={styles.btnIcon} />
-                View My Work
+                View Portfolio
               </motion.button>
               <motion.button 
                 className={styles.secondaryBtn}
@@ -137,7 +132,7 @@ const About = () => {
               <div className={styles.photoWrapper}>
                 <img 
                   src={editorPhoto} 
-                  alt="Kaleb - Professional Video Editor" 
+                  alt="Kaleb Mitiku - Professional Video Editor" 
                   className={styles.photo}
                 />
                 {/* Photo Frame Effects */}
@@ -153,7 +148,7 @@ const About = () => {
               {/* Experience Badge */}
               <div className={styles.experienceBadge}>
                 <div className={styles.badgeContent}>
-                  <span className={styles.badgeNumber}>8+</span>
+                  <span className={styles.badgeNumber}>2+</span>
                   <span className={styles.badgeText}>Years Experience</span>
                 </div>
               </div>

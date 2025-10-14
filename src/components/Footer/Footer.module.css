@@ -143,6 +143,16 @@
   min-width: 16px;
 }
 
+.phoneLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phoneLink:hover {
+  color: #944AF2;
+}
+
 /* Social Links - HORIZONTAL LAYOUT */
 .socialText {
   color: #B0B0B0;
@@ -271,7 +281,7 @@
   box-shadow: 0 4px 12px rgba(148, 74, 242, 0.3);
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
   .footerMiddle {
     grid-template-columns: 1fr;
@@ -326,6 +336,7 @@
   }
 }
 
+/* Extra Small Devices (Phones) */
 @media (max-width: 480px) {
   .container {
     padding: 0 15px;
@@ -337,6 +348,7 @@
 
   .brandTagline {
     font-size: 1rem;
+    line-height: 1.4;
   }
 
   .socialLinks {
@@ -344,8 +356,140 @@
   }
 
   .socialLink {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     font-size: 1.1rem;
   }
+
+  .sectionTitle {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .footerLink {
+    font-size: 0.9rem;
+    padding: 6px 0;
+  }
+
+  .contactItem {
+    font-size: 0.9rem;
+    gap: 10px;
+  }
+
+  .contactIcon {
+    font-size: 0.9rem;
+  }
+
+  .socialText {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+  }
+
+  .backToTop {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  .footerTopBorder {
+    margin-bottom: 30px;
+  }
+
+  .footerMiddle {
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .footerBottom {
+    padding: 20px 0;
+  }
+}
+
+/* Very Small Devices (Small Phones) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .logoText {
+    font-size: 1.4rem;
+  }
+
+  .brandTagline {
+    font-size: 0.9rem;
+  }
+
+  .socialLink {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .footerLink {
+    font-size: 0.85rem;
+  }
+
+  .contactItem {
+    font-size: 0.85rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .footer {
+    padding: 20px 0;
+  }
+
+  .brandSection {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footerMiddle {
+    margin-bottom: 30px;
+  }
+}
+
+/* Performance Optimizations */
+.footer {
+  will-change: transform;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .footerLink,
+  .socialLink,
+  .backToTop {
+    transition: none;
+  }
+  
+  .footerLink:hover {
+    transform: none;
+  }
+  
+  .socialLink:hover {
+    transform: none;
+  }
+  
+  .backToTop:hover {
+    transform: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.footerLink:focus,
+.socialLink:focus,
+.backToTop:focus,
+.phoneLink:focus {
+  outline: 2px solid #944AF2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }

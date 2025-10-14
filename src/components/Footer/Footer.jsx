@@ -3,10 +3,11 @@ import {
   FaEnvelope, 
   FaYoutube,
   FaInstagram,
-  FaTwitter,
+  FaTelegramPlane,
   FaArrowUp,
   FaHeart,
-  FaVideo
+  FaVideo,
+  FaPhone
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 import styles from './Footer.module.css';
@@ -35,14 +36,14 @@ const Footer = () => {
       label: 'Instagram'
     },
     {
-      icon: <FaTwitter />,
-      url: 'https://twitter.com/kaleb',
-      label: 'Twitter'
+      icon: <FaTelegramPlane />,
+      url: 'https://telegram.com/@kaleb',
+      label: 'Telegram'
     }
   ];
 
   const quickLinks = [
-    { name: 'Home', url: '#home' },
+    { name: 'Home', url: '#about' },
     { name: 'Portfolio', url: '#portfolio' },
     { name: 'About', url: '#about' },
     { name: 'Contact', url: '#contact' }
@@ -100,6 +101,12 @@ const Footer = () => {
                 <div className={styles.contactItem}>
                   <FaEnvelope className={styles.contactIcon} />
                   <span>kaleb@example.com</span>
+                </div>
+                <div className={styles.contactItem}>
+                  <FaPhone className={styles.contactIcon} />
+                  <a href="tel:+251912345678" className={styles.phoneLink}>
+                    +251 912 345 678
+                  </a>
                 </div>
                 <div className={styles.contactItem}>
                   <FaVideo className={styles.contactIcon} />

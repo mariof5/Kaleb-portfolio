@@ -1,5 +1,3 @@
-
-
 .about {
   min-height: 100vh;
   display: flex;
@@ -57,15 +55,6 @@
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
 }
-
-.badgeWrapper {
-  position: relative;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-}
-
-
 
 .badgeIcon {
   color: #1DC2FE;

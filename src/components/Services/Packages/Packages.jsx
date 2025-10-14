@@ -4,7 +4,6 @@ import styles from './Packages.module.css';
 
 const Packages = () => {
   const [billingType, setBillingType] = useState('single'); // 'single' or 'monthly'
-  const [selectedPreview, setSelectedPreview] = useState(null);
 
   const packages = [
     {
@@ -29,7 +28,6 @@ const Packages = () => {
         { text: '2 revisions included' },
         { text: 'Amharic/English support' }
       ],
-      preview: '/previews/short-form-sample.jpg',
       popular: false
     },
     {
@@ -54,7 +52,6 @@ const Packages = () => {
         { text: '3 revisions included' },
         { text: 'Amharic/English support' }
       ],
-      preview: '/previews/long-form-sample.jpg',
       popular: true
     },
     {
@@ -79,22 +76,21 @@ const Packages = () => {
         { text: '3 revisions included' },
         { text: 'Amharic/English support' }
       ],
-      preview: '/previews/creator-sample.jpg',
       popular: false
     }
   ];
+
+  const openTelegram = () => {
+    const message = "Hello! I'm interested in your video editing packages. Can you provide more information?";
+    const url = `https://t.me/yourusername?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const openWhatsApp = () => {
-    const message = "Hello! I'm interested in your video editing packages. Can you provide more information?";
-    const url = `https://wa.me/251912345678?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
   };
 
   return (
@@ -211,39 +207,21 @@ const Packages = () => {
                 </div>
               </div>
 
-              {/* Preview */}
-              <div className={styles.previewSection}>
-                <motion.div 
-                  className={styles.preview}
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => setSelectedPreview(pkg.preview)}
-                >
-                  <img 
-                    src={pkg.preview} 
-                    alt={`${pkg.title} sample`}
-                    className={styles.previewImage}
-                  />
-                  <div className={styles.previewOverlay}>
-                    <span>View Sample</span>
-                  </div>
-                </motion.div>
-              </div>
-
               {/* CTA Buttons */}
               <div className={styles.ctaSection}>
                 <motion.button
                   className={styles.primaryButton}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={scrollToContact}
+                  onClick={openTelegram}
                 >
-                  Request Quote
+                  Message on Telegram
                 </motion.button>
                 <button
                   className={styles.secondaryButton}
-                  onClick={openWhatsApp}
+                  onClick={scrollToContact}
                 >
-                  Message on WhatsApp
+                  Contact Us
                 </button>
               </div>
 
@@ -267,46 +245,13 @@ const Packages = () => {
             <motion.button
               className={styles.stickyButton}
               whileTap={{ scale: 0.95 }}
-              onClick={scrollToContact}
+              onClick={openTelegram}
             >
               Get Started
             </motion.button>
           </div>
         </div>
       </div>
-
-      {/* Preview Modal */}
-      <AnimatePresence>
-        {selectedPreview && (
-          <motion.div
-            className={styles.previewModal}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedPreview(null)}
-          >
-            <motion.div
-              className={styles.modalContent}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                className={styles.closeButton}
-                onClick={() => setSelectedPreview(null)}
-              >
-                ×
-              </button>
-              <img 
-                src={selectedPreview} 
-                alt="Preview"
-                className={styles.modalImage}
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
