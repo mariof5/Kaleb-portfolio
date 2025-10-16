@@ -12,7 +12,7 @@ const Packages = () => {
       subtitle: 'TikTok, Reels & YouTube Shorts',
       badge: 'Trending',
       badgeColor: '#FF6B6B',
-      singlePrice: '2,500',
+      singlePrice: '3,500',
       monthlyPrice: '10,000',
       singleText: 'per video',
       monthlyText: 'for 5 videos monthly',
@@ -36,7 +36,7 @@ const Packages = () => {
       subtitle: 'YouTube & Documentary Style',
       badge: 'Most Popular',
       badgeColor: '#4A90F2',
-      singlePrice: '5,000',
+      singlePrice: '6,000',
       monthlyPrice: '17,000',
       singleText: 'per video',
       monthlyText: 'for 4 videos monthly',
@@ -60,8 +60,8 @@ const Packages = () => {
       subtitle: 'Short + Long Form Bundle',
       badge: 'Best Value',
       badgeColor: '#00D4AA',
-      singlePrice: '8,000',
-      monthlyPrice: '28,000',
+      singlePrice: '10,000',
+      monthlyPrice: '30,000',
       singleText: 'per package',
       monthlyText: 'for 4 sets monthly',
       features: [
@@ -82,7 +82,7 @@ const Packages = () => {
 
   const openTelegram = () => {
     const message = "Hello! I'm interested in your video editing packages. Can you provide more information?";
-    const url = `https://t.me/yourusername?text=${encodeURIComponent(message)}`;
+    const url = `https://t.me/djkaleb123?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 

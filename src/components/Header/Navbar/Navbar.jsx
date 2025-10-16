@@ -60,8 +60,10 @@ const Navbar = () => {
        
       ]
     },
-    { name: 'Blog', path: '#blog', hasDropdown: false },
-    { name: 'Contact', path: '#contact', hasDropdown: false }
+    { name: 'Contact',
+      path: '#contact',
+      hasDropdown: false
+     }
   ];
 
   useEffect(() => {

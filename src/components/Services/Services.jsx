@@ -65,7 +65,7 @@ const Services = () => {
   const mainServices = [
     {
       title: 'Motion Graphics & Animation',
-      image: '/services/motion-graphics.jpg',
+      image: '/services/motion-graphics.webp',
       features: [
         'Animated intros and outros',
         'Logo reveals and text animations',
@@ -78,7 +78,7 @@ const Services = () => {
     },
     {
       title: 'Short-Form Content Editing',
-      image: '/services/short-form.jpg',
+      image: '/services/short-form.webp',
       features: [
         'TikTok, Reels, and YouTube Shorts optimization',
         'Dynamic cuts and pacing for engagement',
@@ -91,7 +91,7 @@ const Services = () => {
     },
     {
       title: 'Long-Form & Documentary Editing',
-      image: '/services/long-form.jpg',
+      image: '/services/long-form.webp',
       features: [
         'Narrative structuring and storytelling',
         'Multi-camera sync and editing',
@@ -108,7 +108,7 @@ const Services = () => {
   const additionalServices = [
     {
       title: 'Thumbnail Designing',
-      image: '/services/thumbnail-design.jpg',
+      image: '/services/thumbnail-design.webp',
       features: [
         'Custom thumbnail design for YouTube',
         'Click-through rate optimization',

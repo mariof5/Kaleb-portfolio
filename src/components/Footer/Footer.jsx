@@ -37,7 +37,7 @@ const Footer = () => {
     },
     {
       icon: <FaTelegramPlane />,
-      url: 'https://telegram.com/@kaleb',
+      url: 'https://t.me/kalebbbpo',
       label: 'Telegram'
     }
   ];
@@ -100,13 +100,23 @@ const Footer = () => {
               <div className={styles.contactInfo}>
                 <div className={styles.contactItem}>
                   <FaEnvelope className={styles.contactIcon} />
-                  <span>kaleb@example.com</span>
+                  <span>kalebmq123@gmail.com</span>
                 </div>
                 <div className={styles.contactItem}>
                   <FaPhone className={styles.contactIcon} />
                   <a href="tel:+251912345678" className={styles.phoneLink}>
-                    +251 912 345 678
+                    +251 922 111 970 
+                     
                   </a>
+                  
+                </div>
+                   <div className={styles.contactItem}>
+                  <FaPhone className={styles.contactIcon} />
+                  <a href="tel:+251912345678" className={styles.phoneLink}>
+                    +251 984 859 090 
+                     
+                  </a>
+                  
                 </div>
                 <div className={styles.contactItem}>
                   <FaVideo className={styles.contactIcon} />

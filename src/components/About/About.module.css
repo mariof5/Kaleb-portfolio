@@ -33,13 +33,13 @@
   min-height: 80vh;
 }
 
-/* Left Content Styles */
+/* Left Content */
 .content {
   max-width: 600px;
   text-align: left;
 }
 
-/* Header Styles */
+/* Header */
 .header {
   margin-bottom: 3rem;
 }
@@ -82,14 +82,14 @@
 }
 
 .highlight {
-  background: linear-gradient(135deg, #944AF2 0%, #ebb039 100%);
+  background: linear-gradient(135deg, #ac74f6 0%, #9046EE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   position: relative;
 }
 
-/* Description Styles */
+/* Description */
 .description {
   margin-bottom: 3rem;
 }
@@ -169,7 +169,56 @@
   font-size: 0.9rem;
 }
 
-/* Stats Section */
+/* Professional Resume Button */
+.proDownloadBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ffb300, #8c3c03);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 150, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.proDownloadBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: left 0.5s ease;
+}
+
+.proDownloadBtn:hover::before {
+  left: 100%;
+}
+
+.proDownloadBtn:hover {
+  box-shadow: 0 0 25px rgba(255, 150, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.downloadIcon {
+  font-size: 1.2rem;
+  animation: pulseDown 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Stats */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -204,7 +253,7 @@
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #944AF2 0%, #ebb039 100%);
+  background: linear-gradient(135deg, #944AF2 0%, #5a11ba 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -218,7 +267,7 @@
   letter-spacing: 1px;
 }
 
-/* Right Photo Section */
+/* Photo Section */
 .photoSection {
   display: flex;
   justify-content: center;
@@ -239,9 +288,7 @@
   height: 500px;
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 100px rgba(148, 74, 242, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(148, 74, 242, 0.2);
 }
 
 .photo {
@@ -360,20 +407,96 @@
   100% { transform: scale(1.05); }
 }
 
-/* Responsive Design */
+/* === Resume Modal Viewer === */
+.resumeOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.resumeBox {
+  background: rgba(25, 25, 25, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 95%;
+  max-width: 900px;
+  box-shadow: 0 0 30px rgba(148, 74, 242, 0.4);
+  position: relative;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.resumeTitle {
+  font-size: 1.5rem;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.resumeFrame {
+  width: 100%;
+  height: 70vh;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  background: #000;
+}
+
+.resumeActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.downloadResumeBtn {
+  background: linear-gradient(135deg, #ffb400, #ff6b00);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.downloadResumeBtn:hover {
+  box-shadow: 0 0 20px rgba(255, 180, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .contentWrapper {
-    gap: 3rem;
-  }
-  
-  .title {
-    font-size: 3.5rem;
-  }
-  
-  .photoWrapper {
-    width: 350px;
-    height: 450px;
-  }
+  .contentWrapper { gap: 3rem; }
+  .title { font-size: 3.5rem; }
+  .photoWrapper { width: 350px; height: 450px; }
 }
 
 @media (max-width: 768px) {
@@ -382,75 +505,27 @@
     gap: 3rem;
     text-align: center;
   }
-  
-  .content {
-    text-align: center;
-    max-width: 100%;
-  }
-  
-  .title {
-    font-size: 3rem;
-  }
-  
-  .lead {
-    font-size: 1.3rem;
-  }
-  
-  .sublead {
-    font-size: 1rem;
-    margin: 0 auto;
-  }
-  
-  .ctaSection {
-    justify-content: center;
-  }
-  
-  .stats {
-    margin: 0 auto;
-  }
-  
-  .photoWrapper {
-    width: 300px;
-    height: 400px;
-  }
-  
-  .experienceBadge {
-    right: 10px;
-    bottom: 20px;
-  }
+  .content { text-align: center; max-width: 100%; }
+  .title { font-size: 3rem; }
+  .lead { font-size: 1.3rem; }
+  .sublead { font-size: 1rem; margin: 0 auto; }
+  .ctaSection { justify-content: center; }
+  .stats { margin: 0 auto; }
+  .photoWrapper { width: 300px; height: 400px; }
+  .experienceBadge { right: 10px; bottom: 20px; }
 }
 
 @media (max-width: 480px) {
-  .title {
-    font-size: 2.5rem;
-  }
-  
-  .badge {
-    padding: 0.5rem 1rem;
-  }
-  
-  .badge span {
-    font-size: 0.8rem;
-  }
-  
-  .ctaSection {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .primaryBtn, .secondaryBtn {
+  .title { font-size: 2.5rem; }
+  .badge { padding: 0.5rem 1rem; }
+  .badge span { font-size: 0.8rem; }
+  .ctaSection { flex-direction: column; align-items: center; }
+  .primaryBtn, .secondaryBtn, .proDownloadBtn {
     width: 100%;
     max-width: 300px;
     justify-content: center;
   }
-  
-  .stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .photoWrapper {
-    width: 280px;
-    height: 350px;
-  }
+  .stats { grid-template-columns: 1fr; gap: 1rem; }
+  .photoWrapper { width: 280px; height: 350px; }
+  .resumeFrame { height: 60vh; }
 }

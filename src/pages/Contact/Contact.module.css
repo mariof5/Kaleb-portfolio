@@ -12,6 +12,8 @@
   --accent-primary: #944AF2;
   --accent-secondary: #4A90F2;
   --success-color: #00D4AA;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
 }
 
 .contact {
@@ -146,12 +148,14 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 .sectionDescription {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 1rem;
+  text-align: left;
 }
 
 .contactMethods {
@@ -177,6 +181,7 @@
 .contactItem:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
 .contactIcon {
@@ -194,6 +199,7 @@
 
 .contactDetails {
   flex: 1;
+  text-align: left;
 }
 
 .contactTitle {
@@ -226,6 +232,7 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1rem;
+  text-align: left;
 }
 
 .socialLinks {
@@ -290,6 +297,7 @@
   padding: 2.5rem;
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-primary);
+  transition: all 0.3s ease;
 }
 
 .formHeader {
@@ -367,6 +375,20 @@
   outline: none;
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 3px rgba(148, 74, 242, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Form Validation States */
+.formInput:invalid:not(:focus):not(:placeholder-shown),
+.formTextarea:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--error-color);
+  background: rgba(220, 53, 69, 0.02);
+}
+
+.formInput:valid:not(:focus):not(:placeholder-shown),
+.formTextarea:valid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--success-color);
+  background: rgba(0, 212, 170, 0.02);
 }
 
 .submitButton {
@@ -390,10 +412,12 @@
 .submitButton:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  transform: none !important;
 }
 
 .submitButton:hover:not(:disabled) {
   box-shadow: 0 10px 30px rgba(148, 74, 242, 0.4);
+  transform: translateY(-2px);
 }
 
 .buttonIcon {
@@ -416,8 +440,55 @@
 
 /* Success Message */
 .successMessage {
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 212, 170, 0.05));
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  border-radius: 16px;
+  padding: 2.5rem;
   text-align: center;
-  padding: 2rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.messageHeader h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.closeButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.closeButton:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--border-hover);
 }
 
 .successIcon {
@@ -426,16 +497,46 @@
   margin-bottom: 1rem;
 }
 
-.successMessage h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
 .successMessage p {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Error Message */
+.errorMessage {
+  background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--error-color);
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.errorMessage .messageHeader {
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.errorIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  color: var(--error-color);
+}
+
+.errorMessage .messageHeader span {
+  flex: 1;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.errorMessage .closeButton {
+  position: static;
+  margin-left: auto;
 }
 
 /* Quick Actions */
@@ -464,6 +565,7 @@
 .quickButton:hover {
   border-color: var(--border-hover);
   background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
 }
 
 /* CTA Section */
@@ -487,6 +589,7 @@
   color: var(--text-secondary);
   margin-bottom: 2rem;
   font-size: 1rem;
+  line-height: 1.5;
 }
 
 .ctaButton {
@@ -504,12 +607,43 @@
 .ctaButton:hover {
   background: var(--accent-primary);
   box-shadow: 0 10px 30px rgba(148, 74, 242, 0.3);
+  transform: translateY(-2px);
 }
 
-/* Responsive Design */
+/* Enhanced Loading States */
+.submitButton:disabled .loadingSpinner {
+  border-top-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Improved Focus Styles */
+.formInput:focus,
+.formTextarea:focus,
+.submitButton:focus,
+.quickButton:focus,
+.ctaButton:focus,
+.closeButton:focus,
+.socialLink:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.contactItem:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-color: var(--accent-primary);
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
+
 @media (max-width: 1024px) {
   .content {
     gap: 3rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
   }
 }
 
@@ -527,6 +661,41 @@
     gap: 3rem;
   }
   
+  /* Center align contact info section on mobile */
+  .contactInfo {
+    text-align: center;
+  }
+  
+  .sectionTitle {
+    text-align: center;
+  }
+  
+  .sectionDescription {
+    text-align: center;
+  }
+  
+  .socialTitle {
+    text-align: center;
+  }
+  
+  /* Stack contact items vertically and center content */
+  .contactItem {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .contactDetails {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .contactIcon {
+    align-self: center;
+  }
+  
   .quickActions {
     flex-direction: column;
   }
@@ -537,6 +706,29 @@
   
   .ctaSection {
     padding: 2rem;
+  }
+  
+  .contactItem {
+    padding: 1.25rem;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+  
+  .messageHeader {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .errorMessage .messageHeader {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .errorMessage .closeButton {
+    margin-left: 0;
   }
 }
 
@@ -549,14 +741,22 @@
     font-size: 2rem;
   }
   
+  /* Further mobile optimizations for contact items */
   .contactItem {
-    padding: 1rem;
+    padding: 1.25rem 1rem;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
   
   .contactIcon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .contactDetails {
+    text-align: center;
   }
   
   .formCard {
@@ -564,7 +764,36 @@
   }
   
   .socialLinks {
+    flex-wrap: wrap;
     justify-content: center;
+  }
+  
+  .socialLink {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .submitButton {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .quickButton {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .ctaSection {
+    padding: 1.5rem;
+  }
+  
+  .ctaContent h3 {
+    font-size: 1.3rem;
+  }
+  
+  .ctaContent p {
+    font-size: 0.9rem;
   }
 }
 
@@ -573,25 +802,117 @@
   will-change: transform, opacity;
 }
 
+.formCard,
+.contactItem,
+.socialLink,
+.submitButton,
+.quickButton,
+.ctaButton {
+  will-change: transform, box-shadow;
+}
+
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .contact, .formCard, .contactItem {
+  .contact,
+  .formCard,
+  .contactItem,
+  .socialLink,
+  .submitButton,
+  .quickButton,
+  .ctaButton {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
   
-  .gradientOrb1, .gradientOrb2, .floatingShape1, .floatingShape2 {
+  .gradientOrb1,
+  .gradientOrb2,
+  .floatingShape1,
+  .floatingShape2 {
     animation: none;
+  }
+  
+  .loadingSpinner {
+    animation: none;
+    border-top-color: white;
   }
 }
 
-/* Focus styles for accessibility */
-.formInput:focus,
-.formTextarea:focus,
-.submitButton:focus,
-.quickButton:focus,
-.ctaButton:focus {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-primary: rgba(255, 255, 255, 0.3);
+    --border-hover: rgba(255, 255, 255, 0.6);
+    --text-tertiary: rgba(255, 255, 255, 0.8);
+  }
+  
+  .card-bg {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Print styles */
+@media print {
+  .backgroundElements,
+  .gradientOrb1,
+  .gradientOrb2,
+  .floatingShape1,
+  .floatingShape2 {
+    display: none;
+  }
+  
+  .contact {
+    background: white !important;
+    color: black !important;
+    padding: 50px 0 !important;
+  }
+  
+  .contactItem,
+  .formCard,
+  .ctaSection {
+    border: 1px solid #ccc !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .socialLink,
+  .quickButton,
+  .submitButton,
+  .ctaButton {
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Dark mode enhancements (already dark, but for consistency) */
+@media (prefers-color-scheme: dark) {
+  .formInput,
+  .formTextarea {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .formInput:focus,
+  .formTextarea:focus {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .contactItem:hover,
+  .socialLink:hover,
+  .submitButton:hover:not(:disabled),
+  .quickButton:hover,
+  .ctaButton:hover {
+    transform: none;
+  }
+  
+  .contactItem:active,
+  .socialLink:active,
+  .submitButton:active:not(:disabled),
+  .quickButton:active,
+  .ctaButton:active {
+    transform: scale(0.98);
+  }
 }

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { 
   FaEnvelope, 
   FaPhone, 
@@ -11,47 +12,86 @@ import {
   FaPaperPlane,
   FaCheckCircle,
   FaUser,
-  FaComment
+  FaComment,
+  FaExclamationCircle,
+  FaTimes
 } from 'react-icons/fa';
 import styles from './Contact.module.css';
 
+// Validation helper - updated to match new field names
+const validateForm = ({ user_name, user_email, subject, message }) => {
+  if (!user_name?.trim() || !user_email?.trim() || !subject?.trim() || !message?.trim()) {
+    return 'Please fill in all fields';
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(user_email.trim())) {
+    return 'Please enter a valid email address';
+  }
+  
+  if (user_name.trim().length < 2) {
+    return 'Name should be at least 2 characters long';
+  }
+  
+  if (message.trim().length < 10) {
+    return 'Message should be at least 10 characters long';
+  }
+  
+  return null;
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
     subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const formRef = useRef();
+
+
+
+
+  // EmailJS configuration from environment variables
+  const EMAILJS_CONFIG = {
+    SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+
+    
+  };
 
   const contactInfo = [
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      value: 'kaleb@example.com',
-      link: 'mailto:kaleb@example.com',
+      value: 'kalebmq123@gmail.com',
+      link: 'mailto:kalebmq123@gmail.com',
       description: 'Send me an email anytime'
     },
     {
       icon: <FaPhone />,
       title: 'Phone',
-      value: '+251 91 234 5678',
-      link: 'tel:+251912345678',
+      value: '+251 922 111 970',
+      link: 'tel:+251922111970',
       description: 'Call or text me directly'
     },
     {
       icon: <FaTelegram />,
       title: 'Telegram',
-      value: '@kalebeditor',
-      link: 'https://t.me/kalebeditor',
+      value: '@kalebbbpo',
+      link: 'https://t.me/kalebbbpo',
       description: 'Message me on Telegram'
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Location',
-      value: 'Addis Ababa, Ethiopia',
-      link: '#',
+      value: 'Bole Dembele, Addis Ababa, Ethiopia',
+      link: 'https://maps.app.goo.gl/FkxjN8nnFjYKqGM28',
       description: 'Based in Ethiopia, serving globally'
     }
   ];
@@ -60,58 +100,119 @@ const Contact = () => {
     {
       icon: <FaLinkedin />,
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/kalebeditor',
+      url: 'https://linkedin.com/in/',
       color: '#0077B5'
     },
     {
       icon: <FaInstagram />,
       name: 'Instagram',
-      url: 'https://instagram.com/kalebeditor',
+      url: 'https://instagram.com/',
       color: '#E4405F'
     },
     {
       icon: <FaWhatsapp />,
       name: 'WhatsApp',
-      url: 'https://wa.me/251912345678',
+      url: 'https://wa.me/251922111970',
       color: '#25D366'
     },
     {
       icon: <FaTelegram />,
       name: 'Telegram',
-      url: 'https://t.me/kalebeditor',
+      url: 'https://t.me/kalebbbpo',
       color: '#0088CC'
     }
   ];
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing and hide success message
+    if (error) setError('');
+    if (isSubmitted) setIsSubmitted(false);
+  }, [error, isSubmitted]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Prevent multiple submissions
+    if (isSubmitting) return;
+    
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after success
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setError('');
+
+    // Validate form using helper function
+    const validationError = validateForm(formData);
+    if (validationError) {
+      setError(validationError);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Validate EmailJS configuration
+      if (!EMAILJS_CONFIG.SERVICE_ID || !EMAILJS_CONFIG.TEMPLATE_ID || !EMAILJS_CONFIG.PUBLIC_KEY) {
+        setError('Email service is not configured. Please contact me directly at kalebmq123@gmail.com');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result.text);
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form but don't auto-hide success message
       setFormData({
-        name: '',
-        email: '',
+        user_name: '',
+        user_email: '',
         subject: '',
         message: ''
       });
-    }, 5000);
+
+    } catch (error) {
+      console.error('EmailJS error details:', {
+        text: error.text,
+        message: error.message,
+        status: error.status
+      });
+      
+      let errorMessage = 'Failed to send message. Please try again or contact me directly.';
+      
+      // Provide more specific error messages
+      if (error.status === 400) {
+        errorMessage = 'Invalid form data. Please check your inputs and try again.';
+      } else if (error.status === 403) {
+        errorMessage = 'Email service is temporarily unavailable. Please try again later.';
+      } else if (error.status === 0) {
+        errorMessage = 'Network error. Please check your internet connection and try again.';
+      }
+      
+      setError(errorMessage);
+      setIsSubmitting(false);
+    }
   };
 
+  const handleCloseSuccess = () => {
+    setIsSubmitted(false);
+  };
+
+  const handleCloseError = () => {
+    setError('');
+  };
+
+  // Container variants for animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -259,8 +360,17 @@ const Contact = () => {
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                 >
-                  <FaCheckCircle className={styles.successIcon} />
-                  <h3>Message Sent Successfully!</h3>
+                  <div className={styles.messageHeader}>
+                    <FaCheckCircle className={styles.successIcon} />
+                    <h3>Message Sent Successfully!</h3>
+                    <button 
+                      className={styles.closeButton}
+                      onClick={handleCloseSuccess}
+                      aria-label="Close success message"
+                    >
+                      <FaTimes />
+                    </button>
+                  </div>
                   <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
                 </motion.div>
               ) : (
@@ -271,18 +381,39 @@ const Contact = () => {
                     <p>Fill out the form below and I'll respond as soon as possible</p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className={styles.contactForm}>
+                  {error && (
+                    <motion.div 
+                      className={styles.errorMessage}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      <div className={styles.messageHeader}>
+                        <FaExclamationCircle className={styles.errorIcon} />
+                        <span>{error}</span>
+                        <button 
+                          className={styles.closeButton}
+                          onClick={handleCloseError}
+                          aria-label="Close error message"
+                        >
+                          <FaTimes />
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <form ref={formRef} onSubmit={handleSubmit} className={styles.contactForm}>
                     <div className={styles.formGroup}>
                       <div className={styles.inputWrapper}>
                         <FaUser className={styles.inputIcon} />
                         <input
                           type="text"
-                          name="name"
-                          value={formData.name}
+                          name="user_name"
+                          value={formData.user_name}
                           onChange={handleChange}
                           placeholder="Your Full Name"
                           className={styles.formInput}
                           required
+                          minLength={2}
                         />
                       </div>
                     </div>
@@ -292,8 +423,8 @@ const Contact = () => {
                         <FaEnvelope className={styles.inputIcon} />
                         <input
                           type="email"
-                          name="email"
-                          value={formData.email}
+                          name="user_email"
+                          value={formData.user_email}
                           onChange={handleChange}
                           placeholder="Your Email Address"
                           className={styles.formInput}
@@ -313,6 +444,7 @@ const Contact = () => {
                           placeholder="Project Subject"
                           className={styles.formInput}
                           required
+                          minLength={2}
                         />
                       </div>
                     </div>
@@ -327,6 +459,7 @@ const Contact = () => {
                           className={styles.formTextarea}
                           rows="5"
                           required
+                          minLength={10}
                         ></textarea>
                       </div>
                     </div>
@@ -335,11 +468,14 @@ const Contact = () => {
                       type="submit"
                       className={styles.submitButton}
                       disabled={isSubmitting}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                      whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     >
                       {isSubmitting ? (
-                        <div className={styles.loadingSpinner}></div>
+                        <>
+                          <div className={styles.loadingSpinner}></div>
+                          Sending...
+                        </>
                       ) : (
                         <>
                           <FaPaperPlane className={styles.buttonIcon} />
@@ -361,7 +497,7 @@ const Contact = () => {
               transition={{ delay: 0.4 }}
             >
               <motion.a
-                href="https://t.me/kalebeditor"
+                href="https://t.me/kalebbbpo"
                 className={styles.quickButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -372,7 +508,7 @@ const Contact = () => {
                 Message on Telegram
               </motion.a>
               <motion.a
-                href="https://wa.me/251912345678"
+                href="https://wa.me/251922111970"
                 className={styles.quickButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

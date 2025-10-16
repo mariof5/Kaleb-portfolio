@@ -43,7 +43,7 @@ const Skills = () => {
   const coreSkills = [
     {
       category: 'Editing',
-      image: '/skills/editing.jpg',
+      image: '/skills/editing.webp',
       skills: [
         { name: 'Video Editing', level: 95 },
         { name: 'Color Grading', level: 90 },
@@ -52,7 +52,7 @@ const Skills = () => {
     },
     {
       category: 'Creative',
-      image: '/skills/creative.jpg',
+      image: '/skills/creative.webp',
       skills: [
         { name: 'Motion Graphics', level: 88 },
         { name: 'Visual Effects', level: 82 },
@@ -61,7 +61,7 @@ const Skills = () => {
     },
     {
       category: 'Technical',
-      image: '/skills/technical.jpg',
+      image: '/skills/technical.webp',
       skills: [
         { name: 'Cinematography', level: 80 },
         { name: 'Workflow', level: 85 },
@@ -74,25 +74,25 @@ const Skills = () => {
     { 
       name: 'Premiere Pro', 
       level: 95, 
-      image: '/software/premiere-pro.jpg',
+      image: '/software/premiere-pro.webp',
       category: 'Video Editing'
     },
     { 
       name: 'After Effects', 
       level: 90, 
-      image: '/software/after-effects.jpg',
+      image: '/software/after-effects.webp',
       category: 'Motion Graphics'
     },
     { 
       name: 'DaVinci Resolve', 
       level: 88, 
-      image: '/software/davinci-resolve.jpg',
+      image: '/software/davinci-resolve.webp',
       category: 'Color Grading'
     },
     { 
       name: 'Capcut', 
       level: 98, 
-      image: '/software/capcut.jpg',
+      image: '/software/capcut.webp',
       category: 'Video Editing'
     }
   ];
